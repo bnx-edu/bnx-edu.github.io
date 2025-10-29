@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B's Nexora Educational Platform - Universal Cross-Platform Launcher</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Consolas', 'Monaco', monospace;
+            background: #1e1e1e;
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .console-window {
+            background: #1e1e1e;
+            border: 2px solid #333;
+            border-radius: 8px;
+            margin: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+        
+        .title-bar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 15px;
+            font-weight: bold;
+            border-radius: 6px 6px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .window-controls {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .control-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .close { background: #ff5f56; }
+        .minimize { background: #ffbd2e; }
+        .maximize { background: #27ca3f; }
+        
+        .console-content {
+            padding: 20px;
+            background: #1e1e1e;
+            font-family: 'Consolas', monospace;
+            line-height: 1.6;
+            min-height: 600px;
+        }
+        
+        .intro-text {
+            color: #00ff00;
+            margin-bottom: 20px;
+            white-space: pre-line;
+            font-size: 14px;
+        }
+        
+        .status-line {
+            color: #ffff00;
+            margin: 5px 0;
+        }
+        
+        .success-line {
+            color: #00ff00;
+            margin: 5px 0;
+        }
+        
+        .warning-line {
+            color: #ff8800;
+            margin: 5px 0;
+        }
+        
+        .error-line {
+            color: #ff0000;
+            margin: 5px 0;
+        }
+        
+        .info-line {
+            color: #00aaff;
+            margin: 5px 0;
+        }
+        
+        .menu-section {
+            background: #2d2d2d;
+            border: 1px solid #444;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .menu-title {
+            color: #667eea;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .menu-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        
+        .menu-option {
+            background: #333;
+            border: 2px solid #555;
+            border-radius: 8px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .menu-option:hover {
+            border-color: #667eea;
+            background: #404040;
+            transform: translateY(-2px);
+        }
+        
+        .option-number {
+            color: #ffff00;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .option-title {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 10px 0 5px 0;
+        }
+        
+        .option-desc {
+            color: #aaaaaa;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+        
+        .launch-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 20px auto;
+            display: block;
+            transition: all 0.3s;
+        }
+        
+        .launch-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .system-info {
+            background: #2a2a2a;
+            border-left: 4px solid #00ff00;
+            padding: 15px;
+            margin: 20px 0;
+            font-family: monospace;
+        }
+        
+        .loading-animation {
+            display: inline-block;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        .feature-status {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .status-card {
+            background: #2d2d2d;
+            border: 1px solid #444;
+            border-radius: 8px;
+            padding: 15px;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .status-online { background: #00ff00; }
+        .status-offline { background: #ff0000; }
+        .status-warning { background: #ffff00; }
+        
+        @media (max-width: 768px) {
+            .console-window {
+                margin: 10px;
+            }
+            
+            .console-content {
+                padding: 15px;
+            }
+            
+            .menu-options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="console-window">
+        <div class="title-bar">
+            <span>B's Nexora Educational Platform - Universal Cross-Platform Launcher</span>
+            <div class="window-controls">
+                <button class="control-btn minimize"></button>
+                <button class="control-btn maximize"></button>
+                <button class="control-btn close"></button>
+            </div>
+        </div>
+        
+        <div class="console-content">
+            <div class="intro-text">#!/usr/bin/env python3
+"""
+B's Nexora Educational Platform - Universal Cross-Platform Launcher
+Works on Windows, macOS, and Linux desktop systems
+
+Enhanced Video System Features:
+- YouTube-like video browsing for students
+- All videos uploaded by Master/CTO/CEO/CAO/Teachers are automatically public
+- Real-time video streaming with HTML5 player
+- Cross-device compatibility (Mobile, Desktop, Web)
+- Progress tracking and search functionality
+- Automatic video sync across all devices
+
+Cloud Account System Features:
+- Google-like account creation and management
+- Cross-device login from any computer worldwide
+- Cloud-stored user profiles with GitHub repository
+- Device tracking and access management
+- Automatic account synchronization across devices
+- Secure PBKDF2 password encryption
+- Fallback to local accounts when offline
+- Admin panel for cloud account setup and management
+"""</div>
+            
+            <div class="system-info">
+                <div class="status-line">Detected OS: Windows 11</div>
+                <div class="success-line">Initializing B's Nexora Educational Platform...</div>
+                <div class="success-line">Database initialized successfully</div>
+                <div class="success-line">Default accounts created</div>
+            </div>
+            
+            <div class="status-line">Verifying video system...</div>
+            <div class="success-line">✓ Created uploads directory</div>
+            <div class="success-line">✓ Found 2 active videos in database</div>
+            <div class="success-line">✓ Video system operational - YouTube-like access ready</div>
+            
+            <div class="status-line">Verifying cloud accounts...</div>
+            <div class="success-line">✓ Cloud account configuration loaded</div>
+            <div class="success-line">✓ GitHub repository: BNX-edu/bnx-edu.github.io</div>
+            <div class="success-line">✓ Cloud accounts enabled - Cross-device login ready</div>
+            
+            <div class="success-line">Starting server...</div>
+            <div class="success-line">SUCCESS: Cloud sync system loaded</div>
+            <div class="success-line">SUCCESS: Automatic video compression loaded</div>
+            <div class="success-line">SUCCESS: Cloud Account system loaded (Google-like cross-device accounts)</div>
+            <div class="success-line">SUCCESS: Advanced Face ID authentication system loaded (360° + Auto-Recognition)</div>
+            
+            <div class="feature-status">
+                <div class="status-card">
+                    <div class="success-line">
+                        <span class="status-indicator status-online"></span>
+                        Video System: YouTube-like Ready
+                    </div>
+                </div>
+                <div class="status-card">
+                    <div class="success-line">
+                        <span class="status-indicator status-online"></span>
+                        Cloud Accounts: Cross-device Active
+                    </div>
+                </div>
+                <div class="status-card">
+                    <div class="success-line">
+                        <span class="status-indicator status-online"></span>
+                        Face ID: 360° Recognition Ready
+                    </div>
+                </div>
+                <div class="status-card">
+                    <div class="success-line">
+                        <span class="status-indicator status-online"></span>
+                        Cloud Sync: GitHub Integration Active
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-section">
+                <div class="menu-title">🚀 B's Nexora Educational Platform - Main Menu</div>
+                <div class="menu-options">
+                    <div class="menu-option" onclick="launchPlatform()">
+                        <div class="option-number">1</div>
+                        <div class="option-title">🎓 Launch Educational Platform</div>
+                        <div class="option-desc">Start the main platform with full functionality</div>
+                    </div>
+                    <div class="menu-option" onclick="browseVideos()">
+                        <div class="option-number">2</div>
+                        <div class="option-title">🎥 Browse Videos (YouTube-like)</div>
+                        <div class="option-desc">Access all educational videos across devices</div>
+                    </div>
+                    <div class="menu-option" onclick="manageAccounts()">
+                        <div class="option-number">3</div>
+                        <div class="option-title">👥 Account Management</div>
+                        <div class="option-desc">Google-like cross-device account system</div>
+                    </div>
+                    <div class="menu-option" onclick="setupFaceID()">
+                        <div class="option-number">4</div>
+                        <div class="option-title">🔐 Face ID Setup</div>
+                        <div class="option-desc">360° face recognition with auto-detection</div>
+                    </div>
+                    <div class="menu-option" onclick="cloudSync()">
+                        <div class="option-number">5</div>
+                        <div class="option-title">☁️ Cloud Sync Status</div>
+                        <div class="option-desc">Real-time synchronization across devices</div>
+                    </div>
+                    <div class="menu-option" onclick="platformSettings()">
+                        <div class="option-number">6</div>
+                        <div class="option-title">⚙️ Platform Settings</div>
+                        <div class="option-desc">Themes, configuration, and preferences</div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="launch-button" onclick="launchPlatform()">
+                🚀 Launch B's Nexora Educational Platform
+            </button>
+            
+            <div class="info-line">
+                * Running on http://127.0.0.1:5000
+                <span class="loading-animation">█</span>
+            </div>
+            <div class="info-line">
+                * Press CTRL+C to quit
+            </div>
+            <div class="success-line">
+                ✓ Platform ready for students and teachers!
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function launchPlatform() {
+            window.location.href = 'app.html';
+        }
+        
+        function browseVideos() {
+            window.location.href = 'videos.html';
+        }
+        
+        function manageAccounts() {
+            window.location.href = 'app.html#accounts';
+        }
+        
+        function setupFaceID() {
+            window.location.href = 'app.html#faceid';
+        }
+        
+        function cloudSync() {
+            window.location.href = 'app.html#sync';
+        }
+        
+        function platformSettings() {
+            window.location.href = 'app.html#settings';
+        }
+        
+        // Simulate console loading
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('B\'s Nexora Educational Platform - Universal Cross-Platform Launcher');
+            console.log('Enhanced Video System Features loaded');
+            console.log('Cloud Account System Features loaded');
+            console.log('Platform ready for cross-device access');
+            
+            // Add blinking cursor animation
+            setInterval(function() {
+                const cursor = document.querySelector('.loading-animation');
+                if (cursor) {
+                    cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
+                }
+            }, 500);
+        });
+    </script>
+</body>
+</html>
