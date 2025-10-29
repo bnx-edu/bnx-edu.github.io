@@ -1,0 +1,5 @@
+title: "B's Nexora Educational Platform"
+description: "Advanced Learning Management System"
+theme: minima
+plugins:
+  - jekyll-feed
