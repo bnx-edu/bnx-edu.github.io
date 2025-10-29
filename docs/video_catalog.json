@@ -1,0 +1,28 @@
+[
+  {
+    "id": 2,
+    "title": "INTRO",
+    "description": "",
+    "filename": "20251028_055740_58682308_online-video-cutter.com.mp4",
+    "category": "Technology",
+    "subject": "INTRO",
+    "upload_date": "2025-10-28 12:57:40",
+    "teacher_name": "Master Lalith Chandan",
+    "teacher_role": "cto",
+    "web_url": "videos/20251028_055740_58682308_online-video-cutter.com.mp4",
+    "thumbnail": "videos/thumbnails/20251028_055740_58682308_online-video-cutter.com.mp4.jpg"
+  },
+  {
+    "id": 1,
+    "title": "Homepage Introduction Video",
+    "description": "Introduction video displayed on homepage",
+    "filename": "homepage_intro_video.mp4",
+    "category": "Platform Introduction",
+    "subject": "General",
+    "upload_date": "2025-09-27 09:30:09",
+    "teacher_name": "Master Lalith Chandan",
+    "teacher_role": "cto",
+    "web_url": "videos/homepage_intro_video.mp4",
+    "thumbnail": "videos/thumbnails/homepage_intro_video.mp4.jpg"
+  }
+]
