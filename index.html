@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B's Nexora Educational Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 800px;
+            width: 90%;
+            animation: fadeIn 1s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .logo {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .status {
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            color: #155724;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border: 2px solid #b8dabd;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .feature {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .feature h3 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .feature p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.2rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn.secondary {
+            background: linear-gradient(135deg, #6c757d, #495057);
+            box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
+        }
+        
+        .btn.secondary:hover {
+            box-shadow: 0 8px 25px rgba(108, 117, 125, 0.4);
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 15px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+            display: block;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+        
+        .footer {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e9ecef;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem 1rem;
+                margin: 1rem;
+            }
+            
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🎓 B's Nexora Educational Platform</div>
+        <div class="subtitle">
+            Advanced Learning Management System<br>
+            <strong>YouTube-like Video Experience for Students</strong>
+        </div>
+        
+        <div class="status">
+            ✅ Platform is LIVE and ready for students!<br>
+            All systems operational with cross-device access
+        </div>
+        
+        <div class="stats">
+            <div class="stat">
+                <span class="stat-number">🎥</span>
+                <div class="stat-label">YouTube-like Videos</div>
+            </div>
+            <div class="stat">
+                <span class="stat-number">📱</span>
+                <div class="stat-label">Cross-Device Access</div>
+            </div>
+            <div class="stat">
+                <span class="stat-number">☁️</span>
+                <div class="stat-label">Cloud Synchronization</div>
+            </div>
+            <div class="stat">
+                <span class="stat-number">🌐</span>
+                <div class="stat-label">Web Platform</div>
+            </div>
+        </div>
+        
+        <div class="features">
+            <div class="feature">
+                <h3>🎥 YouTube-like Video System</h3>
+                <p>Students can browse and watch educational videos just like YouTube. All videos uploaded by teachers are automatically available across all devices.</p>
+            </div>
+            <div class="feature">
+                <h3>📱 Cross-Device Compatibility</h3>
+                <p>Access the platform from any device - smartphones, tablets, desktops, or laptops. Your progress and account sync across all devices.</p>
+            </div>
+            <div class="feature">
+                <h3>👥 Account Synchronization</h3>
+                <p>Google-like account system with secure cloud storage. Login from anywhere in the world and access your educational content.</p>
+            </div>
+            <div class="feature">
+                <h3>🏫 Educational Management</h3>
+                <p>Complete learning management system with role-based access for students, teachers, and administrators.</p>
+            </div>
+        </div>
+        
+        <div class="buttons">
+            <a href="docs/" class="btn">🚀 Launch Platform</a>
+            <a href="docs/videos.html" class="btn">🎥 Browse Videos</a>
+            <a href="https://github.com/BNX-edu/bnx-edu.github.io" class="btn secondary">📂 View Source</a>
+        </div>
+        
+        <div class="footer">
+            <p><strong>For Students:</strong> Click "Launch Platform" to access videos and educational content</p>
+            <p><strong>For Teachers:</strong> Use the desktop application to upload and manage content</p>
+            <p><strong>Platform URL:</strong> <a href="https://BNX-edu.github.io/bnx-edu.github.io" style="color: #667eea;">https://BNX-edu.github.io/bnx-edu.github.io</a></p>
+        </div>
+    </div>
+    
+    <script>
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const features = document.querySelectorAll('.feature');
+            features.forEach((feature, index) => {
+                feature.style.animationDelay = (index * 0.2) + 's';
+                feature.style.animation = 'fadeIn 0.8s ease-in forwards';
+            });
+        });
+    </script>
+</body>
+</html>
