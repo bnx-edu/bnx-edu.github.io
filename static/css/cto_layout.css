@@ -1,0 +1,18 @@
+/* CTO Applied Layout: default */
+:root {
+    --primary-color: #0d1b17;
+    --secondary-color: #1a2f26;
+}
+
+body {
+    --accent-green: #0d1b17;
+    --accent-teal: #1a2f26;
+}
+
+/* CTO Layout Management Styles */
+.cto-layout-applied {
+    border-left: 4px solid var(--primary-color);
+    background: rgba(13, 27, 23, 0.2);
+}
+
+/* Layout indicator removed - CTO layouts work silently in background */
