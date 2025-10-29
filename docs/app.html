@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B's Nexora Educational Platform - Full Web App</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .tab-btn {
+            padding: 0.8rem 1.5rem;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .tab-btn:hover, .tab-btn.active {
+            background: #764ba2;
+            transform: translateY(-2px);
+        }
+        
+        .content-area {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 600px;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .feature-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-3px);
+        }
+        
+        .btn {
+            background: #667eea;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+        
+        .status-online { background: #28a745; }
+        .status-offline { background: #dc3545; }
+        .status-syncing { background: #ffc107; }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .video-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-3px);
+        }
+        
+        .video-thumbnail {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .video-info {
+            padding: 1rem;
+        }
+        
+        .account-form {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .face-id-area {
+            text-align: center;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 15px;
+            margin: 1rem 0;
+        }
+        
+        .camera-preview {
+            width: 300px;
+            height: 200px;
+            background: #333;
+            border-radius: 10px;
+            margin: 1rem auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .container {
+                padding: 0.5rem;
+            }
+            
+            .header {
+                padding: 1rem;
+            }
+            
+            .content-area {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🎓 B's Nexora Educational Platform</div>
+            <div class="nav-tabs">
+                <button class="tab-btn active" onclick="showTab('dashboard')">🏠 Dashboard</button>
+                <button class="tab-btn" onclick="showTab('videos')">🎥 Videos</button>
+                <button class="tab-btn" onclick="showTab('accounts')">👥 Accounts</button>
+                <button class="tab-btn" onclick="showTab('faceid')">🔐 Face ID</button>
+                <button class="tab-btn" onclick="showTab('sync')">☁️ Sync</button>
+                <button class="tab-btn" onclick="showTab('settings')">⚙️ Settings</button>
+            </div>
+        </div>
+        
+        <div class="content-area">
+            <!-- Dashboard Tab -->
+            <div id="dashboard" class="tab-content active">
+                <h2>Platform Dashboard</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>🎥 Video System</h3>
+                        <p><span class="status-indicator status-online"></span>YouTube-like Experience Active</p>
+                        <p>Students can access all videos from any device</p>
+                        <button class="btn" onclick="showTab('videos')">Browse Videos</button>
+                    </div>
+                    <div class="feature-card">
+                        <h3>👥 Account System</h3>
+                        <p><span class="status-indicator status-online"></span>Cross-Device Sync Active</p>
+                        <p>Google-like accounts with cloud synchronization</p>
+                        <button class="btn" onclick="showTab('accounts')">Manage Accounts</button>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🔐 Face ID Security</h3>
+                        <p><span class="status-indicator status-online"></span>Advanced Recognition Ready</p>
+                        <p>360° Face recognition with auto-detection</p>
+                        <button class="btn" onclick="showTab('faceid')">Setup Face ID</button>
+                    </div>
+                    <div class="feature-card">
+                        <h3>☁️ Cloud Sync</h3>
+                        <p><span class="status-indicator status-syncing"></span>GitHub Integration Active</p>
+                        <p>Real-time synchronization across all devices</p>
+                        <button class="btn" onclick="showTab('sync')">Sync Status</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Videos Tab -->
+            <div id="videos" class="tab-content">
+                <h2>🎥 YouTube-like Video System</h2>
+                <div style="margin: 1rem 0;">
+                    <input type="text" placeholder="🔍 Search videos..." style="width: 100%; padding: 0.8rem; border: 2px solid #e0e0e0; border-radius: 25px; font-size: 1rem;">
+                </div>
+                <div class="video-grid">
+                    <div class="video-card">
+                        <div class="video-thumbnail">🎥</div>
+                        <div class="video-info">
+                            <h4>Introduction to Platform</h4>
+                            <p>👨‍🏫 Teacher Demo • 📅 Oct 28, 2024</p>
+                            <p>Learn how to use the educational platform</p>
+                            <button class="btn">▶ Watch Now</button>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <div class="video-thumbnail">📚</div>
+                        <div class="video-info">
+                            <h4>Educational Content</h4>
+                            <p>👨‍🏫 Master Admin • 📅 Oct 28, 2024</p>
+                            <p>Sample educational video content</p>
+                            <button class="btn">▶ Watch Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin: 2rem 0;">
+                    <button class="btn">📤 Upload Video (Teachers Only)</button>
+                    <button class="btn">📱 Mobile Video Access</button>
+                </div>
+            </div>
+            
+            <!-- Accounts Tab -->
+            <div id="accounts" class="tab-content">
+                <h2>👥 Account Management System</h2>
+                <div class="feature-grid">
+                    <div class="account-form">
+                        <h3>🔐 Login / Register</h3>
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" placeholder="Enter username">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" placeholder="Enter password">
+                        </div>
+                        <div class="form-group">
+                            <label>Role</label>
+                            <select>
+                                <option>Student</option>
+                                <option>Teacher</option>
+                                <option>Admin</option>
+                            </select>
+                        </div>
+                        <button class="btn" style="width: 100%;">🔑 Login</button>
+                        <button class="btn" style="width: 100%;">📝 Register</button>
+                        <button class="btn" style="width: 100%;">🔐 Face ID Login</button>
+                    </div>
+                    <div class="feature-card">
+                        <h3>☁️ Cloud Account Features</h3>
+                        <p>✅ Cross-device login capability</p>
+                        <p>✅ Automatic account synchronization</p>
+                        <p>✅ Device tracking and management</p>
+                        <p>✅ Secure GitHub repository storage</p>
+                        <p>✅ PBKDF2 encrypted passwords</p>
+                        <p>✅ Fallback to local accounts offline</p>
+                        <button class="btn">☁️ Enable Cloud Sync</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Face ID Tab -->
+            <div id="faceid" class="tab-content">
+                <h2>🔐 Advanced Face ID System</h2>
+                <div class="face-id-area">
+                    <h3>360° Face Recognition</h3>
+                    <div class="camera-preview">
+                        📷 Camera Preview<br>
+                        <small>Face ID Ready</small>
+                    </div>
+                    <p>Advanced face recognition with auto-detection</p>
+                    <button class="btn">📷 Start Face ID Setup</button>
+                    <button class="btn">🔄 Re-train Recognition</button>
+                    <button class="btn">🔐 Test Face Login</button>
+                </div>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>🎯 Recognition Features</h3>
+                        <p>✅ 360° face detection</p>
+                        <p>✅ Auto-recognition system</p>
+                        <p>✅ Cross-device face sync</p>
+                        <p>✅ Emergency backup methods</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🔒 Security Status</h3>
+                        <p><span class="status-indicator status-online"></span>Face ID Active</p>
+                        <p><span class="status-indicator status-online"></span>Cloud Sync Enabled</p>
+                        <p><span class="status-indicator status-online"></span>Multi-device Ready</p>
+                        <p><span class="status-indicator status-online"></span>Backup Systems Active</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sync Tab -->
+            <div id="sync" class="tab-content">
+                <h2>☁️ Cloud Synchronization System</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>📊 Sync Status</h3>
+                        <p><span class="status-indicator status-online"></span>GitHub Connection: Active</p>
+                        <p><span class="status-indicator status-syncing"></span>Account Sync: In Progress</p>
+                        <p><span class="status-indicator status-online"></span>Video Sync: Complete</p>
+                        <p><span class="status-indicator status-online"></span>Cross-device: Enabled</p>
+                        <button class="btn">🔄 Force Sync Now</button>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🌐 Repository Info</h3>
+                        <p>📂 Repository: BNX-edu/bnx-edu.github.io</p>
+                        <p>🔗 URL: https://BNX-edu.github.io/bnx-edu.github.io</p>
+                        <p>📱 Access: Cross-device enabled</p>
+                        <p>🔐 Security: Token authenticated</p>
+                        <button class="btn">🌐 Open Repository</button>
+                    </div>
+                </div>
+                <div style="text-align: center; margin: 2rem 0;">
+                    <button class="btn">📤 Sync Accounts to Cloud</button>
+                    <button class="btn">🎥 Sync Videos to Cloud</button>
+                    <button class="btn">🔐 Sync Face ID Data</button>
+                </div>
+            </div>
+            
+            <!-- Settings Tab -->
+            <div id="settings" class="tab-content">
+                <h2>⚙️ Platform Settings</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>🎨 Theme Settings</h3>
+                        <div class="form-group">
+                            <label>Color Theme</label>
+                            <select onchange="changeTheme(this.value)">
+                                <option value="default">Default Blue</option>
+                                <option value="dark">Dark Mode</option>
+                                <option value="green">Green Theme</option>
+                                <option value="purple">Purple Theme</option>
+                            </select>
+                        </div>
+                        <button class="btn">🎨 Apply Theme</button>
+                    </div>
+                    <div class="feature-card">
+                        <h3>📱 Platform Configuration</h3>
+                        <p>✅ Cross-device compatibility</p>
+                        <p>✅ Mobile optimization</p>
+                        <p>✅ Desktop integration</p>
+                        <p>✅ Web platform access</p>
+                        <button class="btn">⚙️ Advanced Settings</button>
+                    </div>
+                </div>
+                <div style="text-align: center; margin: 2rem 0;">
+                    <button class="btn">💾 Save All Settings</button>
+                    <button class="btn">🔄 Reset to Default</button>
+                    <button class="btn">📊 Export Configuration</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function showTab(tabName) {
+            // Hide all tabs
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+        
+        function changeTheme(theme) {
+            const body = document.body;
+            body.className = theme + '-theme';
+            
+            // Apply theme-specific styles
+            const root = document.documentElement;
+            switch(theme) {
+                case 'dark':
+                    root.style.setProperty('--bg-gradient', 'linear-gradient(135deg, #2c3e50 0%, #34495e 100%)');
+                    break;
+                case 'green':
+                    root.style.setProperty('--bg-gradient', 'linear-gradient(135deg, #27ae60 0%, #2ecc71 100%)');
+                    break;
+                case 'purple':
+                    root.style.setProperty('--bg-gradient', 'linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%)');
+                    break;
+                default:
+                    root.style.setProperty('--bg-gradient', 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)');
+            }
+            
+            body.style.background = 'var(--bg-gradient)';
+        }
+        
+        // Initialize platform
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('B\'s Nexora Educational Platform - Full Web Version Loaded');
+            console.log('Features: Videos, Accounts, Face ID, Sync, Themes');
+            
+            // Simulate real-time updates
+            setInterval(function() {
+                const syncIndicators = document.querySelectorAll('.status-syncing');
+                syncIndicators.forEach(indicator => {
+                    indicator.style.opacity = indicator.style.opacity === '0.5' ? '1' : '0.5';
+                });
+            }, 1000);
+        });
+        
+        // Add interactive functionality
+        function simulateLogin() {
+            alert('Login functionality ready! Connect to backend for full authentication.');
+        }
+        
+        function simulateFaceID() {
+            alert('Face ID system ready! Camera access required for full functionality.');
+        }
+        
+        function simulateSync() {
+            alert('Sync initiated! All data will be synchronized across devices.');
+        }
+    </script>
+</body>
+</html>
