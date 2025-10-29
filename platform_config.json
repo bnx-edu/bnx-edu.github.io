@@ -1,0 +1,13 @@
+{
+  "github_owner": "BNX-edu",
+  "github_repo": "bnx-edu.github.io",
+  "enabled": true,
+  "setup_date": "2025-10-29T11:21:53.168575",
+  "features": {
+    "account_sync": true,
+    "video_sync": true,
+    "cross_device_access": true,
+    "github_pages_deployment": true
+  },
+  "note": "Configuration file for B's Nexora Educational Platform"
+}
