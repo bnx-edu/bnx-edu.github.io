@@ -1,0 +1,623 @@
+/*
+===============================================
+B'S NEXORA EDUCATIONAL PLATFORM
+COMPREHENSIVE HOVER EFFECTS LIBRARY
+Each element has a unique, distinct hover effect
+===============================================
+*/
+
+/* ============================================
+   NAVIGATION & HEADER EFFECTS
+   ============================================ */
+
+/* Logo - Pulse & Glow Effect */
+.logo:hover {
+    animation: pulse-glow 0.6s ease-in-out;
+    text-shadow: 0 0 20px rgba(26, 47, 38, 0.8),
+                 0 0 40px rgba(26, 47, 38, 0.6);
+    transform: scale(1.05);
+}
+
+@keyframes pulse-glow {
+    0%, 100% { transform: scale(1.05); }
+    50% { transform: scale(1.1); }
+}
+
+/* Nav Links - Slide & Underline Effect */
+.nav-links a {
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-links a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #1a2f26, #0d1b17);
+    transition: left 0.4s ease;
+}
+
+.nav-links a:hover::before {
+    left: 0;
+}
+
+.nav-links a:hover {
+    background: var(--light-green);
+    color: var(--accent-white);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(26, 47, 38, 0.4);
+}
+
+/* User Info - Rotate Border Effect */
+.user-info {
+    position: relative;
+    transition: all 0.4s ease;
+}
+
+.user-info::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 20px;
+    background: linear-gradient(45deg, #1a2f26, #0d1b17, #1a2f26);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.user-info:hover::before {
+    opacity: 1;
+    animation: rotate-border 2s linear infinite;
+}
+
+@keyframes rotate-border {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.user-info:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 20px rgba(26, 47, 38, 0.6);
+}
+
+/* ============================================
+   BUTTON EFFECTS
+   ============================================ */
+
+/* Primary Button - Ripple Effect */
+.btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(26, 47, 38, 0.5);
+    background: linear-gradient(45deg, #1a2f26, #0d1b17);
+}
+
+/* Secondary Button - Bounce Effect */
+.btn-secondary:hover {
+    animation: bounce-button 0.5s ease;
+    background: linear-gradient(135deg, #0d1b17, #1a2f26);
+    box-shadow: 0 8px 20px rgba(13, 27, 23, 0.4);
+}
+
+@keyframes bounce-button {
+    0%, 100% { transform: translateY(0); }
+    25% { transform: translateY(-10px); }
+    50% { transform: translateY(-5px); }
+    75% { transform: translateY(-7px); }
+}
+
+/* Danger Button - Shake Effect */
+.btn-danger:hover {
+    animation: shake-button 0.5s ease;
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    box-shadow: 0 0 20px rgba(220, 53, 69, 0.5);
+}
+
+@keyframes shake-button {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-3px); }
+}
+
+/* Success Button - Grow & Glow Effect */
+.btn-success:hover {
+    animation: grow-glow 0.4s ease forwards;
+    box-shadow: 0 0 30px rgba(40, 167, 69, 0.6);
+}
+
+@keyframes grow-glow {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1.08); }
+}
+
+/* ============================================
+   CARD EFFECTS
+   ============================================ */
+
+/* Main Card - Simple Lift Effect (Tilt Removed) */
+.card {
+    transition: all 0.4s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5),
+                0 0 30px rgba(26, 47, 38, 0.3);
+    border-color: #1a2f26;
+}
+
+/* Dashboard Card - Simple Scale Effect (Tilt Removed) */
+.dashboard-card {
+    transition: all 0.6s ease;
+}
+
+.dashboard-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 35px rgba(26, 47, 38, 0.4);
+}
+
+/* Feature Card - Slide Up Effect */
+.feature-card {
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.feature-card:hover {
+    transform: translateY(-15px) scale(1.03);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(135deg, rgba(26, 77, 58, 1) 0%, rgba(0, 0, 0, 0.9) 100%);
+}
+
+/* ============================================
+   INPUT & FORM EFFECTS
+   ============================================ */
+
+/* Text Input - Neon Glow Effect */
+input[type="text"]:hover,
+input[type="email"]:hover,
+input[type="password"]:hover,
+textarea:hover {
+    border-color: #1a2f26;
+    box-shadow: 0 0 15px rgba(26, 47, 38, 0.5),
+                inset 0 0 10px rgba(26, 47, 38, 0.2);
+    transform: scale(1.02);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+    border-color: #1a2f26;
+    box-shadow: 0 0 25px rgba(26, 47, 38, 0.7),
+                inset 0 0 15px rgba(26, 47, 38, 0.3);
+    transform: scale(1.03);
+    outline: none;
+}
+
+/* Select Dropdown - Expand Effect */
+select:hover {
+    transform: scale(1.03);
+    border-color: #1a2f26;
+    box-shadow: 0 5px 15px rgba(26, 47, 38, 0.3);
+    cursor: pointer;
+}
+
+/* Checkbox - Pop Effect */
+input[type="checkbox"]:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked {
+    animation: checkbox-pop 0.3s ease;
+}
+
+@keyframes checkbox-pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1.1); }
+}
+
+/* ============================================
+   TABLE EFFECTS
+   ============================================ */
+
+/* Table Row - Highlight Sweep Effect */
+table tr {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+table tr::before {
+    content: '';
+    position: absolute;
+    left: -100%;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(26, 47, 38, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+table tr:hover::before {
+    left: 100%;
+}
+
+table tr:hover {
+    background: rgba(26, 47, 38, 0.3);
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Table Header - Wave Effect */
+table th:hover {
+    animation: wave-header 0.6s ease;
+    background: linear-gradient(135deg, #1a2f26, #0d1b17);
+}
+
+@keyframes wave-header {
+    0%, 100% { transform: translateY(0); }
+    25% { transform: translateY(-3px); }
+    50% { transform: translateY(0); }
+    75% { transform: translateY(-2px); }
+}
+
+/* ============================================
+   ICON EFFECTS
+   ============================================ */
+
+/* Icon - Spin Effect */
+.fa-sync:hover,
+.fa-refresh:hover,
+.fa-cog:hover {
+    animation: spin-icon 0.8s ease-in-out;
+}
+
+@keyframes spin-icon {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Icon - Bounce Effect */
+.fa-arrow-up:hover,
+.fa-chevron-up:hover {
+    animation: bounce-icon 0.6s ease infinite;
+}
+
+@keyframes bounce-icon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+/* Icon - Pulse Effect */
+.fa-heart:hover,
+.fa-star:hover {
+    animation: pulse-icon 0.8s ease infinite;
+    color: #ff6b6b;
+}
+
+@keyframes pulse-icon {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+}
+
+/* Icon - Shake Effect */
+.fa-bell:hover,
+.fa-exclamation:hover {
+    animation: shake-icon 0.5s ease;
+}
+
+@keyframes shake-icon {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-15deg); }
+    75% { transform: rotate(15deg); }
+}
+
+/* ============================================
+   BADGE & TAG EFFECTS
+   ============================================ */
+
+/* Badge - Float Effect */
+.badge:hover {
+    animation: float-badge 2s ease-in-out infinite;
+    box-shadow: 0 5px 15px rgba(26, 47, 38, 0.4);
+}
+
+@keyframes float-badge {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+/* Tag - Flip Effect */
+.tag:hover {
+    transform: rotateX(360deg);
+    transition: transform 0.6s ease;
+}
+
+/* ============================================
+   ALERT & NOTIFICATION EFFECTS
+   ============================================ */
+
+/* Alert - Slide In Effect */
+.alert:hover {
+    animation: slide-alert 0.4s ease;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes slide-alert {
+    0% { transform: translateX(-10px); }
+    50% { transform: translateX(5px); }
+    100% { transform: translateX(0); }
+}
+
+/* Notification - Glow Pulse Effect */
+.notification:hover {
+    animation: glow-pulse 1.5s ease infinite;
+}
+
+@keyframes glow-pulse {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(26, 47, 38, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(26, 47, 38, 0.8),
+                    0 0 40px rgba(26, 47, 38, 0.6);
+    }
+}
+
+/* ============================================
+   LINK EFFECTS
+   ============================================ */
+
+/* Standard Link - Underline Expand Effect */
+a:not(.btn):not(.nav-links a) {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+a:not(.btn):not(.nav-links a)::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #1a2f26, #0d1b17);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+a:not(.btn):not(.nav-links a):hover::after {
+    width: 100%;
+}
+
+a:not(.btn):not(.nav-links a):hover {
+    color: #1a2f26;
+    transform: translateY(-2px);
+}
+
+/* ============================================
+   IMAGE & MEDIA EFFECTS
+   ============================================ */
+
+/* Image - Zoom Effect (Rotation Removed) */
+img:hover {
+    transform: scale(1.1);
+    transition: all 0.5s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    filter: brightness(1.1) contrast(1.1);
+}
+
+/* Video - Glow Border Effect */
+video:hover {
+    box-shadow: 0 0 30px rgba(26, 47, 38, 0.6),
+                0 0 50px rgba(26, 47, 38, 0.4);
+    transform: scale(1.02);
+    transition: all 0.4s ease;
+}
+
+/* ============================================
+   PROGRESS BAR EFFECTS
+   ============================================ */
+
+/* Progress Bar - Shimmer Effect */
+.progress-bar:hover {
+    animation: shimmer 2s ease infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+.progress-bar:hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    animation: shimmer-slide 2s ease infinite;
+}
+
+@keyframes shimmer-slide {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* ============================================
+   MODAL & POPUP EFFECTS
+   ============================================ */
+
+/* Modal - Scale & Fade Effect */
+.modal:hover {
+    animation: modal-bounce 0.5s ease;
+}
+
+@keyframes modal-bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+/* ============================================
+   SIDEBAR & MENU EFFECTS
+   ============================================ */
+
+/* Sidebar Item - Slide & Glow Effect */
+.sidebar-item:hover {
+    transform: translateX(10px);
+    background: linear-gradient(90deg, rgba(26, 47, 38, 0.3), transparent);
+    box-shadow: inset 5px 0 0 #1a2f26;
+    transition: all 0.3s ease;
+}
+
+/* Menu Item - Expand Effect */
+.menu-item:hover {
+    transform: scale(1.05);
+    background: rgba(26, 47, 38, 0.2);
+    border-left: 4px solid #1a2f26;
+    padding-left: 20px;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* ============================================
+   SPECIAL EFFECTS
+   ============================================ */
+
+/* Gold Glow Effect (for premium features) */
+.gold-glow:hover {
+    animation: gold-pulse 1.5s ease infinite;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.6),
+                0 0 40px rgba(255, 215, 0, 0.4);
+}
+
+@keyframes gold-pulse {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(255, 215, 0, 0.8),
+                    0 0 60px rgba(255, 215, 0, 0.6);
+    }
+}
+
+/* Neon Effect */
+.neon-effect:hover {
+    text-shadow: 0 0 10px #1a2f26,
+                 0 0 20px #1a2f26,
+                 0 0 30px #1a2f26,
+                 0 0 40px #0d1b17;
+    animation: neon-flicker 1.5s ease infinite;
+}
+
+@keyframes neon-flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+/* Glitch Effect */
+.glitch-effect:hover {
+    animation: glitch 0.3s ease infinite;
+}
+
+@keyframes glitch {
+    0% {
+        transform: translate(0);
+    }
+    20% {
+        transform: translate(-2px, 2px);
+    }
+    40% {
+        transform: translate(-2px, -2px);
+    }
+    60% {
+        transform: translate(2px, 2px);
+    }
+    80% {
+        transform: translate(2px, -2px);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+/* ============================================
+   RESPONSIVE HOVER EFFECTS
+   ============================================ */
+
+/* Disable complex animations on mobile */
+@media (max-width: 768px) {
+    * {
+        animation-duration: 0.2s !important;
+    }
+    
+    .card:hover {
+        transform: translateY(-5px) !important;
+    }
+    
+    img:hover {
+        transform: scale(1.05) !important;
+    }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+/* Focus states for keyboard navigation */
+*:focus-visible {
+    outline: 3px solid #1a2f26;
+    outline-offset: 3px;
+    animation: focus-pulse 1s ease infinite;
+}
+
+@keyframes focus-pulse {
+    0%, 100% { outline-color: #1a2f26; }
+    50% { outline-color: #0d1b17; }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
